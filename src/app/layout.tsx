@@ -30,8 +30,25 @@ const pinyonScript = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Vania & Tania - XV Años",
-  description: "Nuestros XV Años",
+  title: "Tania & Vania - XV Años",
+  description: "En una noche llena de magia, sueños y encanto les invitamos a celebrar nuestros 15 años.",
+  openGraph: {
+    images: [
+      {
+        url: "/invitacion/metadata_vt.png",
+        width: 1200,
+        height: 630,
+        alt: "Tania & Vania - XV Años",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/invitacion/metadata_vt.png"],
+  },
+  icons: {
+    icon: "/broche_hadas.webp",
+  },
 };
 
 export default function RootLayout({
