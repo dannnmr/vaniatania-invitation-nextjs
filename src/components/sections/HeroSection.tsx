@@ -19,6 +19,8 @@ interface HeroSectionProps {
         hada1?: string;
         hada2?: string;
         espejo?: string;
+        luces?: string;
+        footer?: string;
       };
     };
   };
@@ -71,23 +73,50 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
         )}
       </div>
 
+      {/* Luces colgantes en la parte superior */}
+      {data.assets?.decorations?.luces && (
+        <>
+          <img
+            src={data.assets.decorations.luces}
+            alt=""
+            className="absolute top-0 left-0 pointer-events-none select-none z-20"
+            style={{ height: '160px', width: 'auto', opacity: 0.9 }}
+          />
+          <img
+            src={data.assets.decorations.luces}
+            alt=""
+            className="absolute top-0 right-0 pointer-events-none select-none z-20"
+            style={{ height: '160px', width: 'auto', opacity: 0.9, transform: 'scaleX(-1)' }}
+          />
+        </>
+      )}
+
       {/* Contenido principal */}
       <div className="relative z-10 flex flex-col items-center justify-between text-center px-4 w-full min-h-[100svh] py-16">
         
         {/* Parte Superior (Nombre y Evento) */}
         <div className="flex flex-col items-center flex-1 justify-center">
-          <motion.p
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: isEnvelopeOpen ? 1 : 0, y: isEnvelopeOpen ? 0 : -20 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-mono text-sm md:text-base tracking-[0.4em] uppercase font-light text-center mb-6"
-            style={{ 
-              color: theme.colors.primary,
-              textShadow: '0 2px 10px rgba(255,255,255,0.6)'
+
+          {/* XV Años: Marca de agua - encima del espejo */}
+          <motion.span
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: isEnvelopeOpen ? 1 : 0, y: isEnvelopeOpen ? 0 : -10 }}
+            transition={{ duration: 1, delay: 0.15 }}
+            className="select-none pointer-events-none text-center mb-3 block"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontSize: 'clamp(2.8rem, 9vw, 4.5rem)',
+              fontWeight: 700,
+              fontStyle: 'italic',
+              color: 'transparent',
+              WebkitTextStroke: `1.2px ${theme.colors.primary}`,
+              opacity: 0.55,
+              lineHeight: 1,
+              letterSpacing: '0.04em',
             }}
           >
-            {data.client.eventType}
-          </motion.p>
+            XV Años
+          </motion.span>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -96,7 +125,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
             className="relative flex items-center justify-center w-[90vw] max-w-[400px] md:max-w-[500px] aspect-[4/5] mb-8 mx-auto"
             style={{ willChange: 'transform, opacity' }} // Optimize performance
           >
-            {/* Espejo de fondo (Sin drop-shadow para evitar el lag de renderizado) */}
+            {/* Espejo de fondo */}
             {data.assets?.decorations?.espejo && (
               <img 
                 src={data.assets.decorations.espejo} 
@@ -104,6 +133,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
                 className="absolute inset-0 w-full h-full object-contain pointer-events-none"
               />
             )}
+
 
             {/* Hada 1 (Arriba a la izquierda) */}
             {data.assets?.decorations?.hada1 && (

@@ -52,7 +52,7 @@ export const baseTemplateConfig = {
     unitText: 'Persona',
   },
   music: {
-    ambientTrack: '/audio/song_vt.mp3',
+    ambientTrack: '/audio/disclosure.mp3',
     spotifyPlaylistUrl: 'https://open.spotify.com/playlist/0',
     suggestLabel: 'Sugiérenos una canción',
   },
@@ -88,7 +88,8 @@ export const baseTemplateConfig = {
     heroBackground: "/images/hero-bg.jpg",
     decorations: {
       stars: "/images/decorations/stars.png",
-      bosque: "https://res.cloudinary.com/dvaswskle/image/upload/v1783049539/bg_original_kp1hum.webp",
+      bosque: "https://res.cloudinary.com/dvaswskle/image/upload/v1783099116/Dise%C3%B1o_sin_t%C3%ADtulo_sx9k9z.png",
+      // bosque: "https://res.cloudinary.com/dvaswskle/image/upload/v1783049539/bg_original_kp1hum.webp",
       hada1: "https://res.cloudinary.com/dvaswskle/image/upload/v1782954142/fairy_rosa_qy7gav.webp",
       hada2: "https://res.cloudinary.com/dvaswskle/image/upload/v1782954123/fairy_verde_zu7mhw.webp",
       espejo: "https://res.cloudinary.com/dvaswskle/image/upload/v1782972472/espejo_dotzaz.webp",
@@ -106,8 +107,9 @@ export const baseTemplateConfig = {
       enredadera: "https://res.cloudinary.com/dvaswskle/image/upload/v1783061413/enderadera_bk5euj.webp",
       dress_code: "https://res.cloudinary.com/dvaswskle/image/upload/v1783061986/dress_etiqueta_s0qni6.webp",
       moño: "https://res.cloudinary.com/dvaswskle/image/upload/v1783062595/lado_derecho_17_te2y0f.png",
-      footer: "https://res.cloudinary.com/dvaswskle/image/upload/v1783063549/image_fxbhss.webp"
-
+      footer: "https://res.cloudinary.com/dvaswskle/image/upload/v1783063549/image_fxbhss.webp",
+      luces: "https://res.cloudinary.com/dvaswskle/image/upload/v1783096562/luces_colgantes_joeokd.webp",
+      fairy_volando: "https://res.cloudinary.com/dvaswskle/image/upload/v1783096638/fairy_volando_vlvszy.webp"
     },
     envelope: {
       sello: "https://res.cloudinary.com/dvaswskle/image/upload/v1782961651/broche_hadas_1_usxpot.webp",

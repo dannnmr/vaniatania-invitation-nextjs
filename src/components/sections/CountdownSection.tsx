@@ -13,6 +13,7 @@ interface CountdownSectionProps {
       decorations?: {
         papel_arriba?: string;
         mariposa_rosa?: string;
+        luces?: string;
       }
     };
   };
@@ -40,6 +41,26 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
       className="relative flex flex-col items-center py-24 px-6 overflow-hidden"
       style={{ backgroundColor: theme.colors.primary }}
     >
+      {/* Luces colgantes - extremo derecho e izquierdo */}
+      {data.assets?.decorations?.luces && (
+        <>
+          {/* Izquierda */}
+          <img
+            src={data.assets.decorations.luces}
+            alt="Luces colgantes"
+            className="absolute top-0 left-0 pointer-events-none select-none z-10"
+            style={{ height: '180px', width: '50%', objectFit: 'cover', objectPosition: 'right', opacity: 0.85 }}
+          />
+          {/* Derecha (espejada) */}
+          <img
+            src={data.assets.decorations.luces}
+            alt="Luces colgantes"
+            className="absolute top-0 right-0 pointer-events-none select-none z-10"
+            style={{ height: '180px', width: '50%', objectFit: 'cover', objectPosition: 'right', opacity: 0.85, transform: 'scaleX(-1)' }}
+          />
+        </>
+      )}
+
       <style>{`
         @keyframes firefly-float {
           0%, 100% { 
@@ -151,7 +172,7 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
 
       {/* Decorative Paper Divider Bottom */}
       {data.assets?.decorations?.papel_arriba && (
-        <div className="absolute -bottom-7 left-0 w-full z-20 pointer-events-none transform translate-y-[2px]">
+        <div className="absolute -bottom-7 left-0 w-full z-20 md:z-0 pointer-events-none transform translate-y-[2px]">
           <img 
             src={data.assets.decorations.papel_arriba} 
             alt="Papel decorativo" 

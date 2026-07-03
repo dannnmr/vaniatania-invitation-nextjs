@@ -57,7 +57,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
             transition={{ duration: 1.5 }}
             className="absolute top-0 left-0 w-40 h-56 md:w-64 md:h-80 -scale-x-100 opacity-80"
           >
-            <Image src={assets.decorations.enredadera} alt="Enredadera Izquierda" fill className="object-contain object-top-right" />
+            <Image src={assets.decorations.enredadera} alt="Enredadera Izquierda" fill sizes="(max-width: 768px) 160px, 256px" className="object-contain object-top-right" />
           </motion.div>
           
           {/* Arriba Derecha */}
@@ -67,7 +67,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
             transition={{ duration: 1.5 }}
             className="absolute top-0 right-0 w-40 h-56 md:w-64 md:h-80 opacity-80"
           >
-            <Image src={assets.decorations.enredadera} alt="Enredadera Derecha" fill className="object-contain object-top-right" />
+            <Image src={assets.decorations.enredadera} alt="Enredadera Derecha" fill sizes="(max-width: 768px) 160px, 256px" className="object-contain object-top-right" />
           </motion.div>
 
           {/* Abajo Izquierda (volteada hacia arriba) */}
@@ -77,7 +77,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
             transition={{ duration: 1.5, delay: 0.3 }}
             className="absolute bottom-0 left-0 w-40 h-56 md:w-64 md:h-80 -scale-x-100 -scale-y-100 opacity-60"
           >
-            <Image src={assets.decorations.enredadera} alt="Enredadera Abajo Izquierda" fill className="object-contain object-top-right" />
+            <Image src={assets.decorations.enredadera} alt="Enredadera Abajo Izquierda" fill sizes="(max-width: 768px) 160px, 256px" className="object-contain object-top-right" />
           </motion.div>
 
           {/* Abajo Derecha (volteada hacia arriba) */}
@@ -87,7 +87,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
             transition={{ duration: 1.5, delay: 0.3 }}
             className="absolute bottom-0 right-0 w-40 h-56 md:w-64 md:h-80 -scale-y-100 opacity-60"
           >
-            <Image src={assets.decorations.enredadera} alt="Enredadera Abajo Derecha" fill className="object-contain object-top-right" />
+            <Image src={assets.decorations.enredadera} alt="Enredadera Abajo Derecha" fill sizes="(max-width: 768px) 160px, 256px" className="object-contain object-top-right" />
           </motion.div>
         </div>
       )}
@@ -125,7 +125,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                   transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
                   className="absolute -top-10 -left-6 md:-left-20 w-12 h-12 md:w-16 md:h-16 opacity-70 pointer-events-none"
                 >
-                  <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill className="object-contain -scale-x-100" />
+                  <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill sizes="64px" className="object-contain -scale-x-100" />
                 </motion.div>
                 
                 <motion.div 
@@ -133,7 +133,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                   transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
                   className="absolute top-1/2 -right-6 md:-right-16 w-10 h-10 md:w-14 md:h-14 opacity-70 pointer-events-none"
                 >
-                  <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill className="object-contain" />
+                  <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill sizes="56px" className="object-contain" />
                 </motion.div>
               </>
             )}
@@ -157,6 +157,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                 src={assets.decorations.mariposa_rosa} 
                 alt="Mariposa" 
                 fill 
+                sizes="(max-width: 768px) 64px, 80px"
                 className="object-contain opacity-80"
               />
             </motion.div>
@@ -182,6 +183,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                         src={assets.decorations.mariposa_rosa} 
                         alt="Mariposa flotando" 
                         fill 
+                        sizes="40px"
                         className={`object-contain ${idx % 2 !== 0 ? '-scale-x-100' : ''}`} 
                       />
                     </motion.div>

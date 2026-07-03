@@ -229,6 +229,7 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
                       src={item.image} 
                       alt={item.title} 
                       fill 
+                      sizes="(max-width: 768px) 88px, 96px"
                       className="object-contain opacity-100"
                       onError={() => setImgErrors(prev => ({ ...prev, [idx]: true }))}
                     />

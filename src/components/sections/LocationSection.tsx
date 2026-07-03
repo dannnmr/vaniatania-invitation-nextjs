@@ -21,6 +21,7 @@ interface LocationSectionProps {
         hada2?: string;
         espejo?: string;
         mariposas?: string;
+        fairy_volando?: string;
         letrero?: string;
         flores?: string;
       };
@@ -60,7 +61,7 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
     }}>
       {/* Decorative Paper Divider Top */}
       {data.assets?.decorations?.papel_abajo && (
-        <div className="absolute -top-3 left-0 w-full z-20 pointer-events-none transform -translate-y-[2px]">
+        <div className="absolute -top-3 left-0 w-full z-20 md:z-0 pointer-events-none transform -translate-y-[2px]">
           <img 
             src={data.assets.decorations.papel_abajo} 
             alt="Papel decorativo" 
@@ -69,26 +70,26 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
         </div>
       )}
       {/* Fondo Editorial (Imagen de Bosque a la derecha) */}
-      {data.assets?.decorations?.letrero && (
+      {data.assets?.decorations?.fairy_volando && (
         <motion.div 
           initial={{ opacity: 0, scale: 1.1, x: 50 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          whileInView={{ opacity: 0.6, scale: 1, x: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
           style={{
             position: 'absolute',
             top: '20%',
             right: '-25%',
-            width: '90%',
+            width: '100%',
             maxWidth: '700px',
-            height: '90%',
+            height: '70%',
             zIndex: 0,
-            opacity: 0.6, // Más visible
+            opacity: 0.5, // Más visible
             pointerEvents: 'none'
           }}
         >
           <Image 
-            src={data.assets.decorations.letrero} 
+            src={data.assets.decorations.fairy_volando} 
             alt="Decoración Ubicación"
             fill
             sizes="(max-width: 700px) 100vw, 700px"

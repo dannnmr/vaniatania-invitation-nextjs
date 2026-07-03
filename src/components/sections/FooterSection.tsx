@@ -31,6 +31,7 @@ export function FooterSection({ data, theme }: FooterProps) {
           src={data.assets.decorations.footer}
           alt="NY Background Footer" 
           fill 
+          sizes="100vw"
           className="object-cover" 
           style={{ objectPosition: 'bottom' }}
         />
