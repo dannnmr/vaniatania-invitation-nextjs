@@ -52,7 +52,7 @@ export const baseTemplateConfig = {
     unitText: 'Persona',
   },
   music: {
-    ambientTrack: '/audio/disclosure.mp3',
+    ambientTrack: '/audio/disclousure.mp3',
     spotifyPlaylistUrl: 'https://open.spotify.com/playlist/0',
     suggestLabel: 'Sugiérenos una canción',
   },
