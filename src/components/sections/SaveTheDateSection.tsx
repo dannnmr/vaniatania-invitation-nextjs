@@ -205,7 +205,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
             }}
           >
             <CalendarPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
-            <span className="font-serif italic tracking-wide text-lg md:text-xl uppercase">
+            <span className="font-serif italic tracking-wide text-md md:text-lg uppercase">
               Agendar en Calendario
             </span>
           </button>
