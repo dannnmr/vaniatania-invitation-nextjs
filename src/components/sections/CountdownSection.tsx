@@ -114,12 +114,10 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
             transition={{ duration: 1.5, delay: 0.2 }}
             className="absolute top-10 left-4 md:top-16 md:left-24 z-20 pointer-events-none"
           >
-            <motion.img 
-              animate={{ y: [0, -15, 0], rotate: [-5, 5, -5] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            <img 
               src={data.assets.decorations.mariposa_rosa} 
               alt="Mariposa" 
-              className="w-16 md:w-20 object-contain drop-shadow-lg"
+              className="w-16 md:w-20 object-contain drop-shadow-lg animate-float-medium will-change-transform"
             />
           </motion.div>
 
@@ -129,12 +127,10 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
             transition={{ duration: 1.5, delay: 0.5 }}
             className="absolute bottom-20 right-4 md:bottom-32 md:right-24 z-20 pointer-events-none"
           >
-            <motion.img 
-              animate={{ y: [0, -12, 0], rotate: [5, -5, 5] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            <img 
               src={data.assets.decorations.mariposa_rosa} 
               alt="Mariposa" 
-              className="w-12 md:w-16 object-contain drop-shadow-md"
+              className="w-12 md:w-16 object-contain drop-shadow-md animate-float-reverse-slow will-change-transform"
               style={{ transform: 'scaleX(-1)' }}
             />
           </motion.div>
@@ -179,13 +175,15 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
 
       {/* Decorative Paper Divider Bottom */}
       {data.assets?.decorations?.papel_arriba && (
-        <div className="absolute -bottom-7 left-0 w-full h-[15vw] min-h-[50px] z-20 md:z-0 pointer-events-none transform translate-y-[2px]">
+        <div className="absolute -bottom-7 left-0 w-full z-20 md:z-0 pointer-events-none transform translate-y-[2px]">
           <Image 
             src={data.assets.decorations.papel_arriba} 
             alt="Papel decorativo" 
-            fill
+            width={0}
+            height={0}
             sizes="100vw"
-            className="object-cover object-bottom" 
+            style={{ width: '100%', height: 'auto' }}
+            className="object-cover" 
           />
         </div>
       )}

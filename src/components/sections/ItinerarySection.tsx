@@ -200,7 +200,7 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
             <div 
               key={idx} 
               // La curva va hasta el 20% y 80% del ancho
-              className={`itinerary-block absolute w-[20%] flex flex-col ${isLeft ? 'left-0 items-end text-right' : 'right-0 items-start text-left'}`}
+              className={`itinerary-block absolute w-[25%] flex flex-col ${isLeft ? 'left-2 md:left-8 items-end text-right' : 'right-2 md:right-8 items-start text-left'}`}
               style={{ top: `${topPercent}%`, transform: 'translateY(-50%)' }}
             >
               

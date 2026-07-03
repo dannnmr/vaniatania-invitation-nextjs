@@ -24,10 +24,8 @@ export function GiftRegistrySection({ data, theme }: GiftRegistryProps) {
       style={{ backgroundColor: theme.colors.primary }}
     >
       {/* Decoración de fondo */}
-      <motion.div
-        animate={{ rotate: [3, -3, 3] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-4 -right-12 w-64 h-64 md:w-80 md:h-80 z-0 opacity-20 pointer-events-none"
+      <div
+        className="absolute -top-4 -right-12 w-64 h-64 md:w-80 md:h-80 z-0 opacity-20 pointer-events-none animate-float-medium will-change-transform"
       >
         <Image 
           src="/images/decorativas_v2/boladisco2.png"
@@ -36,7 +34,7 @@ export function GiftRegistrySection({ data, theme }: GiftRegistryProps) {
           style={{ objectFit: 'contain' }}
           onError={(e) => (e.currentTarget.style.display = 'none')}
         />
-      </motion.div>
+      </div>
 
       <div className="text-center max-w-2xl z-10 mb-10">
         <p className="font-mono text-xs uppercase tracking-[0.2em] mb-2 font-bold" style={{ color: theme.colors.gold }}>

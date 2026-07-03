@@ -48,6 +48,55 @@ html {
   opacity: 0;
   animation: reveal-char 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(0, -12px, 0) rotate(2deg); }
+  66% { transform: translate3d(0, 5px, 0) rotate(-2deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(0, 12px, 0) rotate(-2deg); }
+  66% { transform: translate3d(0, -5px, 0) rotate(2deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 4.5s ease-in-out infinite;
+}
+
+.animate-float-reverse-slow {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3.5s ease-in-out infinite;
+}
+
+.animate-pulse-heart {
+  animation: pulse-heart 1.2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin 25s linear infinite reverse;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

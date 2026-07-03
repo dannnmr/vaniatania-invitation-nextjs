@@ -63,7 +63,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
       {/* Background Parallax (Bosque o gradiente de fallback) */}
       <div 
         ref={elementRef}
-        className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none"
+        className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none will-change-transform transform-gpu"
       >
         {data.assets?.decorations?.bosque ? (
           <Image
@@ -101,7 +101,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
       )}
 
       {/* Contenido principal */}
-      <div className="relative z-10 flex flex-col items-center justify-between text-center px-4 w-full min-h-[100svh] py-16">
+      <div className="relative z-10 flex flex-col items-center justify-between text-center px-4 w-full min-h-[100svh] py-10 md:py-16">
         
         {/* Parte Superior (Nombre y Evento) */}
         <div className="flex flex-col items-center flex-1 justify-center">
@@ -111,7 +111,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: isEnvelopeOpen ? 1 : 0, y: isEnvelopeOpen ? 0 : -10 }}
             transition={{ duration: 1, delay: 0.15 }}
-            className="select-none pointer-events-none text-center mb-3 block"
+            className="select-none pointer-events-none text-center mb-2 md:mb-3 block"
             style={{
               fontFamily: 'var(--font-cormorant)',
               fontSize: 'clamp(2.8rem, 9vw, 4.5rem)',
@@ -131,7 +131,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: isEnvelopeOpen ? 1 : 0, scale: isEnvelopeOpen ? 1 : 0.95 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative flex items-center justify-center w-[90vw] max-w-[400px] md:max-w-[500px] aspect-[4/5] mb-8 mx-auto"
+            className="relative flex items-center justify-center h-[55vh] max-h-[500px] w-auto max-w-[85vw] aspect-[4/5] mb-6 md:mb-8 mx-auto"
             style={{ willChange: 'transform, opacity' }} // Optimize performance
           >
             {/* Espejo de fondo */}
@@ -156,14 +156,12 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
                 transition={{ duration: 1, delay: 0.1 }}
                 className="absolute top-3 -left-2 md:-top-8 md:-left-12 z-20 pointer-events-none rotate-15"
               >
-                <motion.img 
-                  animate={{ y: [0, -15, 0], rotate: [-2, 3, -2] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                <img 
                   src={data.assets.decorations.hada1} 
                   alt="Hada" 
                   decoding="async"
                   fetchPriority="high"
-                  className="w-28 md:w-36 object-contain drop-shadow-lg"
+                  className="w-28 md:w-36 object-contain drop-shadow-lg animate-float-medium will-change-transform"
                   style={{ filter: 'contrast(1.1)' }}
                 />
               </motion.div>
@@ -177,21 +175,19 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
                 transition={{ duration: 1, delay: 0.1 }}
                 className="absolute -bottom-2 -right-4 md:-bottom-12 md:-right-12 z-20 pointer-events-none"
               >
-                <motion.img 
-                  animate={{ y: [0, -12, 0], rotate: [2, -3, 2] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                <img 
                   src={data.assets.decorations.hada2} 
                   alt="Hada" 
                   decoding="async"
                   fetchPriority="high"
-                  className="w-28 md:w-36 object-contain drop-shadow-lg"
+                  className="w-28 md:w-36 object-contain drop-shadow-lg animate-float-reverse-slow will-change-transform"
                   style={{ filter: 'contrast(1.1)' }}
                 />
               </motion.div>
             )}
             
             {/* Nombres centrados en el espejo */}
-            <h1 className="relative z-10 font-display text-6xl md:text-7xl lg:text-8xl text-emerald-950 text-center flex flex-col items-center justify-center -mt-2 md:-mt-12">
+            <h1 className="relative z-10 font-display text-5xl md:text-7xl lg:text-8xl text-emerald-950 text-center flex flex-col items-center justify-center -mt-2 md:-mt-12">
               {data.client.name.includes(' y ') ? (
                 <>
                   <span>{data.client.name.split(' y ')[0]}</span>
@@ -212,11 +208,11 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
           animate={{ opacity: isEnvelopeOpen ? 1 : 0 }}
           transition={{ duration: 0.8, delay: 0.1 }} // Retraso mínimo
 
-          className="mt-auto px-6 py-4 max-w-sm flex items-center justify-center text-center shadow-2xl relative"
+          className="mt-auto mb-10 md:mb-12 px-6 py-4 max-w-sm flex items-center justify-center text-center shadow-2xl relative"
           style={{ 
-            backgroundColor: 'rgba(2, 44, 30, 0.35)', // Cristal oscuro (esmeralda muy oscuro y translúcido)
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
+            backgroundColor: 'rgba(2, 44, 30, 0.45)', // Ligeramente más opaco para compensar menor blur
+            backdropFilter: 'blur(2px)',
+            WebkitBackdropFilter: 'blur(2px)',
             border: '1px solid rgba(212, 175, 55, 0.3)', // Borde dorado muy sutil
             borderRadius: '20px', // Bordes más afilados, chic minimalista
           }}

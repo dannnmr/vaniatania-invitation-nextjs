@@ -120,21 +120,17 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
             {/* Mariposas flotando alrededor de los nombres */}
             {assets?.decorations?.mariposa_rosa && (
               <>
-                <motion.div 
-                  animate={{ y: [0, -15, 0], x: [0, 10, 0], rotate: [0, -5, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  className="absolute -top-10 -left-6 md:-left-20 w-12 h-12 md:w-16 md:h-16 opacity-70 pointer-events-none"
+                <div 
+                  className="absolute -top-10 -left-6 md:-left-20 w-12 h-12 md:w-16 md:h-16 opacity-70 pointer-events-none animate-float-medium will-change-transform"
                 >
                   <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill sizes="64px" className="object-contain -scale-x-100" />
-                </motion.div>
+                </div>
                 
-                <motion.div 
-                  animate={{ y: [0, -20, 0], x: [0, -10, 0], rotate: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-                  className="absolute top-1/2 -right-6 md:-right-16 w-10 h-10 md:w-14 md:h-14 opacity-70 pointer-events-none"
+                <div 
+                  className="absolute top-1/2 -right-6 md:-right-16 w-10 h-10 md:w-14 md:h-14 opacity-70 pointer-events-none animate-float-reverse-slow will-change-transform"
                 >
                   <Image src={assets.decorations.mariposa_rosa} alt="Mariposa flotando" fill sizes="56px" className="object-contain" />
-                </motion.div>
+                </div>
               </>
             )}
 
@@ -170,14 +166,8 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                 <div key={idx} className="flex flex-col items-center relative">
                   {/* Mariposas revoloteando para padrinos (alternando lados) */}
                   {assets?.decorations?.mariposa_rosa && (
-                    <motion.div 
-                      animate={{ 
-                        y: [0, idx % 2 === 0 ? -10 : -15, 0], 
-                        x: [0, idx % 2 === 0 ? 5 : -5, 0], 
-                        rotate: [0, idx % 2 === 0 ? 5 : -5, 0] 
-                      }}
-                      transition={{ repeat: Infinity, duration: 4 + (idx * 0.5), ease: "easeInOut", delay: idx * 0.5 }}
-                      className={`absolute top-6 md:top-8 ${idx % 2 === 0 ? 'right-2 md:-right-2' : 'left-2 md:-left-2'} w-8 h-8 md:w-10 md:h-10 opacity-70 pointer-events-none`}
+                    <div 
+                      className={`absolute top-6 md:top-8 ${idx % 2 === 0 ? 'right-2 md:-right-2' : 'left-2 md:-left-2'} w-8 h-8 md:w-10 md:h-10 opacity-70 pointer-events-none animate-float-medium will-change-transform`}
                     >
                       <Image 
                         src={assets.decorations.mariposa_rosa} 
@@ -186,7 +176,7 @@ export function ParentsSection({ data, theme }: ParentsSectionProps) {
                         sizes="40px"
                         className={`object-contain ${idx % 2 !== 0 ? '-scale-x-100' : ''}`} 
                       />
-                    </motion.div>
+                    </div>
                   )}
 
                   <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] block mb-3 opacity-80" style={{ color: theme.colors.rose }}>

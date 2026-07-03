@@ -61,13 +61,15 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
     }}>
       {/* Decorative Paper Divider Top */}
       {data.assets?.decorations?.papel_abajo && (
-        <div className="absolute -top-3 left-0 w-full h-[15vw] min-h-[50px] z-20 md:z-0 pointer-events-none transform -translate-y-[2px]">
+        <div className="absolute -top-3 left-0 w-full z-20 md:z-0 pointer-events-none transform -translate-y-[2px]">
           <Image 
             src={data.assets.decorations.papel_abajo} 
             alt="Papel decorativo" 
-            fill
+            width={0}
+            height={0}
             sizes="100vw"
-            className="object-cover object-top" 
+            style={{ width: '100%', height: 'auto' }}
+            className="object-cover" 
           />
         </div>
       )}
@@ -157,17 +159,17 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
                   position: 'relative', width: '90px', height: '90px', borderRadius: '50%', 
                   border: `1px solid ${theme.colors.gold}40`, display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: theme.colors.gold, backgroundColor: 'rgba(255,255,255,0.4)',
-                  backdropFilter: 'blur(8px)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
+                  backdropFilter: 'blur(2px)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
                 }}
               >
-                <motion.svg viewBox="0 0 100 100" style={{ position: 'absolute', inset: -25, width: 'calc(100% + 50px)', height: 'calc(100% + 50px)' }} animate={{ rotate: 360 }} transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}>
+                <svg viewBox="0 0 100 100" style={{ position: 'absolute', inset: -25, width: 'calc(100% + 50px)', height: 'calc(100% + 50px)' }} className="animate-spin-slow will-change-transform">
                   <path id="circleTextPathIconic" d="M 50, 50 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" fill="transparent" />
                   <text style={{ fontSize: '7px', fill: theme.colors.gold, fontFamily: 'var(--font-mono)', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600 }}>
                     <textPath href="#circleTextPathIconic" startOffset="0%">
                       VER EN GOOGLE MAPS • RUTA AL EVENTO • 
                     </textPath>
                   </text>
-                </motion.svg>
+                </svg>
                 
                 <MapPin size={38} strokeWidth={1} color={theme.colors.gold} />
               </motion.div>

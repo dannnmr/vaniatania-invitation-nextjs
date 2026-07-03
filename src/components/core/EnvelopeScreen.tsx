@@ -139,14 +139,9 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
                   setIsOpening(true);
                   if (onStartOpen) onStartOpen();
                 }}
-                animate={{ scale: [1, 1.03, 1], rotate: [0, 1, -1, 0] }}
-                transition={{
-                  scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
-                }}
                 whileHover={{ scale: 1.08, rotate: 3 }}
                 whileTap={{ scale: 0.92 }}
-                className="pointer-events-auto relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] cursor-pointer drop-shadow-2xl"
+                className="pointer-events-auto relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] cursor-pointer drop-shadow-2xl animate-pulse-slow"
               >
                 <Image
                   src={envAssets.sello!}
@@ -180,15 +175,12 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
               </div>
             )}
             
-            <motion.p
-              initial={{ opacity: 0.3 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ duration: 1.4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-              className="absolute -bottom-12 w-full text-center font-mono text-[0.7rem] uppercase tracking-[0.2em]"
+            <p
+              className="absolute -bottom-12 w-full text-center font-mono text-[0.7rem] uppercase tracking-[0.2em] animate-pulse opacity-70"
               style={{ color: theme.colors.primary }}
             >
               Toca para abrir
-            </motion.p>
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

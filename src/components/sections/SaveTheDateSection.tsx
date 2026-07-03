@@ -94,7 +94,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
       )}
 
       {/* Contenedor Principal Limitado */}
-      <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center px-4">
+      <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center px-6 md:px-8">
         
         {/* Mes y Año (Top) - Usamos Verde Agua */}
         <motion.h2 
@@ -114,7 +114,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center items-end gap-3 md:gap-5 mt-6 w-full"
+          className="flex justify-center items-end gap-2 md:gap-5 mt-6 w-full"
         >
           {daysOfWeek.map((d, i) => {
             const isTarget = i === 3; // El centro es nuestra fecha (el 0)
@@ -137,10 +137,8 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
                     <>
                       {/* Corazón Verde Imagen */}
                       {assets.decorations.corazon_verde ? (
-                        <motion.div 
-                          animate={{ scale: [1, 1.15, 1] }}
-                          transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24"
+                        <div 
+                          className="absolute top-1/2 left-1/2 w-16 h-16 md:w-24 md:h-24 animate-pulse-heart will-change-transform"
                         >
                           <Image 
                             src={assets.decorations.corazon_verde} 
@@ -148,7 +146,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
                             fill 
                             className="object-contain drop-shadow-md"
                           />
-                        </motion.div>
+                        </div>
                       ) : (
                         <Heart 
                           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 fill-current drop-shadow-md" 

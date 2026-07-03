@@ -51,10 +51,8 @@ export function DressCodeSection({ data, theme }: DressCodeProps) {
 
         {/* Imagen central de etiqueta (o ícono) */}
         {data.assets?.decorations?.dress_code ? (
-          <motion.div 
-            animate={{ y: [0, -10, 0], rotate: [-2, 3, -2] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative w-28 h-28 my-1 drop-shadow-lg flex justify-center items-center"
+          <div 
+            className="relative w-28 h-28 my-1 drop-shadow-lg flex justify-center items-center animate-float-medium will-change-transform"
           >
             <Image 
               src={data.assets.decorations.dress_code} 
@@ -63,12 +61,10 @@ export function DressCodeSection({ data, theme }: DressCodeProps) {
               sizes="(max-width: 768px) 100vw, 33vw"
               style={{ objectFit: 'contain' }}
             />
-          </motion.div>
+          </div>
         ) : (
-          <motion.div 
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative w-32 h-32 my-2 drop-shadow-lg flex justify-center items-center"
+          <div 
+            className="relative w-32 h-32 my-2 drop-shadow-lg flex justify-center items-center animate-float-medium will-change-transform"
           >
             {!imgError ? (
               <Image 
@@ -82,7 +78,7 @@ export function DressCodeSection({ data, theme }: DressCodeProps) {
             ) : (
               <Shirt size={64} style={{ color: theme.colors.accent }} />
             )}
-          </motion.div>
+          </div>
         )}
 
         {/* Círculos de texturas/colores */}
