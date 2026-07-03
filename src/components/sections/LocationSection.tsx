@@ -61,11 +61,13 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
     }}>
       {/* Decorative Paper Divider Top */}
       {data.assets?.decorations?.papel_abajo && (
-        <div className="absolute -top-3 left-0 w-full z-20 md:z-0 pointer-events-none transform -translate-y-[2px]">
-          <img 
+        <div className="absolute -top-3 left-0 w-full h-[15vw] min-h-[50px] z-20 md:z-0 pointer-events-none transform -translate-y-[2px]">
+          <Image 
             src={data.assets.decorations.papel_abajo} 
             alt="Papel decorativo" 
-            className="w-full h-auto object-cover" 
+            fill
+            sizes="100vw"
+            className="object-cover object-top" 
           />
         </div>
       )}

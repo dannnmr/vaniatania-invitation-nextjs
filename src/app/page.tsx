@@ -58,7 +58,7 @@ export default function Home() {
         <MusicSection data={baseTemplateConfig} theme={baseTemplateConfig.theme} />
         <RSVPSection data={baseTemplateConfig} theme={baseTemplateConfig.theme} /> */}
         <FooterSection data={baseTemplateConfig} theme={baseTemplateConfig.theme} />
-        {isOpen && <AudioController src="/audio/song_vt.mp3" />}
+        {isOpen && <AudioController src={baseTemplateConfig.music.ambientTrack} />}
       </main>
     </>
   );

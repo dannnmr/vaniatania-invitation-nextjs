@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MailOpen } from 'lucide-react';
+import Image from 'next/image';
 
 interface EnvelopeProps {
   isOpen: boolean;
@@ -24,6 +25,10 @@ interface EnvelopeProps {
 
 export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: EnvelopeProps) {
   const [isOpening, setIsOpening] = useState(false);
+  const [loadedBg, setLoadedBg] = useState(false);
+  const [loadedLeft, setLoadedLeft] = useState(false);
+  const [loadedRight, setLoadedRight] = useState(false);
+  const [loadedSello, setLoadedSello] = useState(false);
 
   useEffect(() => {
     if (isOpening) {
@@ -55,10 +60,15 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
             style={{ backgroundColor: theme.colors.primary }}
           >
             {envAssets?.envelope_complete && (
-              <img
-                src={envAssets.envelope_complete}
+              <Image
+                src={envAssets.envelope_complete!}
                 alt="Sobre fondo"
-                className="w-full h-full object-cover object-center scale-[1]"
+                fill
+                decoding="async"
+                fetchPriority="high"
+                sizes="100vw"
+                onLoad={() => setLoadedBg(true)}
+                className={`object-cover object-center scale-[1] transition-opacity duration-700 ${loadedBg ? 'opacity-100' : 'opacity-0'}`}
               />
             )}
           </motion.div>
@@ -74,10 +84,16 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
         style={!hasImages ? { backgroundColor: theme.colors.primary } : {}}
       >
         {hasImages ? (
-          <img
-            src={envAssets.left}
+          <Image
+            src={envAssets.left!}
             alt="Solapa Izquierda"
-            className="w-full h-full object-cover object-center scale-[1]"
+            fill
+            priority
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+            onLoad={() => setLoadedLeft(true)}
+            className={`object-cover object-center scale-[1] transition-opacity duration-700 ${loadedLeft ? 'opacity-100' : 'opacity-0'}`}
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(0,0,0,0.05)_0%,transparent_100%)]" />
@@ -93,10 +109,16 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
         style={!hasImages ? { backgroundColor: theme.colors.primary } : {}}
       >
         {hasImages ? (
-          <img
-            src={envAssets.right}
+          <Image
+            src={envAssets.right!}
             alt="Solapa Derecha"
-            className="w-full h-full object-cover object-center scale-[1]"
+            fill
+            priority
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+            onLoad={() => setLoadedRight(true)}
+            className={`object-cover object-center scale-[1] transition-opacity duration-700 ${loadedRight ? 'opacity-100' : 'opacity-0'}`}
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(0,0,0,0.05)_0%,transparent_100%)]" />
@@ -126,10 +148,14 @@ export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: Env
                 whileTap={{ scale: 0.92 }}
                 className="pointer-events-auto relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] cursor-pointer drop-shadow-2xl"
               >
-                <img
-                  src={envAssets.sello}
+                <Image
+                  src={envAssets.sello!}
                   alt="Sello de invitación"
-                  className="w-full h-full object-contain"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 280px, 350px"
+                  onLoad={() => setLoadedSello(true)}
+                  className={`object-contain transition-opacity duration-700 ${loadedSello ? 'opacity-100' : 'opacity-0'}`}
                 />
               </motion.button>
             ) : (

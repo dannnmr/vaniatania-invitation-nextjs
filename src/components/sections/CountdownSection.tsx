@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useCountdown } from '@/hooks/useCountdown';
+import Image from 'next/image';
 import { CSSSparkle } from '@/components/ui/CSSSparkle';
 
 interface CountdownSectionProps {
@@ -45,19 +46,25 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
       {data.assets?.decorations?.luces && (
         <>
           {/* Izquierda */}
-          <img
-            src={data.assets.decorations.luces}
-            alt="Luces colgantes"
-            className="absolute top-0 left-0 pointer-events-none select-none z-10"
-            style={{ height: '180px', width: '50%', objectFit: 'cover', objectPosition: 'right', opacity: 0.85 }}
-          />
+          <div className="absolute top-0 left-0 w-[50%] h-[180px] pointer-events-none select-none z-10 opacity-85">
+            <Image
+              src={data.assets.decorations.luces}
+              alt="Luces colgantes"
+              fill
+              sizes="50vw"
+              className="object-cover object-right"
+            />
+          </div>
           {/* Derecha (espejada) */}
-          <img
-            src={data.assets.decorations.luces}
-            alt="Luces colgantes"
-            className="absolute top-0 right-0 pointer-events-none select-none z-10"
-            style={{ height: '180px', width: '50%', objectFit: 'cover', objectPosition: 'right', opacity: 0.85, transform: 'scaleX(-1)' }}
-          />
+          <div className="absolute top-0 right-0 w-[50%] h-[180px] pointer-events-none select-none z-10 opacity-85" style={{ transform: 'scaleX(-1)' }}>
+            <Image
+              src={data.assets.decorations.luces}
+              alt="Luces colgantes"
+              fill
+              sizes="50vw"
+              className="object-cover object-right"
+            />
+          </div>
         </>
       )}
 
@@ -172,11 +179,13 @@ export function CountdownSection({ data, theme }: CountdownSectionProps) {
 
       {/* Decorative Paper Divider Bottom */}
       {data.assets?.decorations?.papel_arriba && (
-        <div className="absolute -bottom-7 left-0 w-full z-20 md:z-0 pointer-events-none transform translate-y-[2px]">
-          <img 
+        <div className="absolute -bottom-7 left-0 w-full h-[15vw] min-h-[50px] z-20 md:z-0 pointer-events-none transform translate-y-[2px]">
+          <Image 
             src={data.assets.decorations.papel_arriba} 
             alt="Papel decorativo" 
-            className="w-full h-auto object-cover" 
+            fill
+            sizes="100vw"
+            className="object-cover object-bottom" 
           />
         </div>
       )}

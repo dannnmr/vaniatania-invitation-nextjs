@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useGsapScroll } from '@/hooks/useGsapScroll';
 import { useTextReveal } from '@/hooks/useTextReveal';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface HeroSectionProps {
   isEnvelopeOpen?: boolean;
@@ -36,6 +37,8 @@ interface HeroSectionProps {
 export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
   // Parallax hook
   const { elementRef } = useGsapScroll({ yPercent: 20 });
+  const [loadedMirror, setLoadedMirror] = useState(false);
+  const [loadedBg, setLoadedBg] = useState(false);
 
   const { ref: phraseRef, play: playPhrase } = useTextReveal({ 
     autoPlay: false, 
@@ -63,10 +66,16 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
         className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none"
       >
         {data.assets?.decorations?.bosque ? (
-          <img 
-            src={data.assets.decorations.bosque} 
+          <Image
+            src={data.assets.decorations.bosque!} 
             alt="Fondo bosque" 
-            className="w-full h-full object-cover object-center opacity-100 " 
+            fill
+            priority
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+            onLoad={() => setLoadedBg(true)}
+            className={`object-cover object-center transition-opacity duration-1000 ${loadedBg ? 'opacity-100' : 'opacity-0'}`} 
           />
         ) : (
           <div className="w-full h-full bg-cover bg-center opacity-40" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))' }} />
@@ -127,10 +136,14 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
           >
             {/* Espejo de fondo */}
             {data.assets?.decorations?.espejo && (
-              <img 
-                src={data.assets.decorations.espejo} 
+              <Image
+                src={data.assets.decorations.espejo!} 
                 alt="Marco espejo" 
-                className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                fill
+                priority
+                sizes="(max-width: 768px) 90vw, 500px"
+                onLoadingComplete={() => setLoadedMirror(true)}
+                className={`object-contain pointer-events-none transition-opacity duration-1000 ${loadedMirror ? 'opacity-100' : 'opacity-0'}`}
               />
             )}
 
@@ -148,8 +161,10 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   src={data.assets.decorations.hada1} 
                   alt="Hada" 
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-28 md:w-36 object-contain drop-shadow-lg"
-                  style={{ filter: 'brightness(1.15) contrast(1.1)' }}
+                  style={{ filter: 'contrast(1.1)' }}
                 />
               </motion.div>
             )}
@@ -167,8 +182,10 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                   src={data.assets.decorations.hada2} 
                   alt="Hada" 
-                  className="w-28 md:w-26 object-contain drop-shadow-lg"
-                  style={{ transform: 'scaleX(-1)' }}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="w-28 md:w-36 object-contain drop-shadow-lg"
+                  style={{ filter: 'contrast(1.1)' }}
                 />
               </motion.div>
             )}

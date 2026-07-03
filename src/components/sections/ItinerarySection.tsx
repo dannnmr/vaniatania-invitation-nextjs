@@ -179,7 +179,7 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
             style={{ width: '40px', height: '40px' }} // alignOrigin centrará esto perfectamente
           >
             {data.assets?.decorations?.flor_icon ? (
-              <img src={data.assets.decorations.flor_icon} alt="Flor" className="w-12 h-12 object-contain" />
+              <Image src={data.assets.decorations.flor_icon} alt="Flor" width={48} height={48} className="w-12 h-12 object-contain" />
             ) : (
               <Heart fill={theme.colors.gold} stroke={theme.colors.gold} size={24} className="animate-pulse" />
             )}
