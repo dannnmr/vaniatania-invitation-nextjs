@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useGsapScroll } from '@/hooks/useGsapScroll';
 import { useTextReveal } from '@/hooks/useTextReveal';
+import { useEffect } from 'react';
 
 interface HeroSectionProps {
   isEnvelopeOpen?: boolean;
@@ -18,6 +18,7 @@ interface HeroSectionProps {
         bosque?: string;
         hada1?: string;
         hada2?: string;
+        espejo?: string;
       };
     };
   };
@@ -33,19 +34,18 @@ interface HeroSectionProps {
 export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
   // Parallax hook
   const { elementRef } = useGsapScroll({ yPercent: 20 });
-  
-  // Reveal hook for the phrase
-  const { ref: phraseRef, play: playPhrase } = useTextReveal({
-    autoPlay: false,
-    delay: 0.1,
-    duration: 0.8,
-    stagger: 0.03
+
+  const { ref: phraseRef, play: playPhrase } = useTextReveal({ 
+    autoPlay: false, 
+    delay: 0.1, 
+    duration: 0.5, 
+    stagger: 0.02 
   });
 
   useEffect(() => {
     if (isEnvelopeOpen) {
-      // Delay so it animates right when the envelope is opening
-      const t = setTimeout(() => playPhrase(), 600);
+      // Retraso mínimo para que aparezca junto con la apertura del sobre
+      const t = setTimeout(() => playPhrase(), 100);
       return () => clearTimeout(t);
     }
   }, [isEnvelopeOpen, playPhrase]);
@@ -76,48 +76,107 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
         
         {/* Parte Superior (Nombre y Evento) */}
         <div className="flex flex-col items-center flex-1 justify-center">
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="border px-6 py-2 rounded-full mb-6 bg-white/30 backdrop-blur-sm"
-            style={{ borderColor: theme.colors.gold }}
+            animate={{ opacity: isEnvelopeOpen ? 1 : 0, y: isEnvelopeOpen ? 0 : -20 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-mono text-sm md:text-base tracking-[0.4em] uppercase font-light text-center mb-6"
+            style={{ 
+              color: theme.colors.primary,
+              textShadow: '0 2px 10px rgba(255,255,255,0.6)'
+            }}
           >
-            <span 
-              className="font-mono text-xs tracking-[0.4em] uppercase font-bold"
-              style={{ color: theme.colors.gold }}
-            >
-              {data.client.eventType}
-            </span>
-          </motion.div>
+            {data.client.eventType}
+          </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="font-display text-7xl md:text-8xl lg:text-9xl text-emerald-950 mb-8 drop-shadow-xl"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: isEnvelopeOpen ? 1 : 0, scale: isEnvelopeOpen ? 1 : 0.95 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative flex items-center justify-center w-[90vw] max-w-[400px] md:max-w-[500px] aspect-[4/5] mb-8 mx-auto"
+            style={{ willChange: 'transform, opacity' }} // Optimize performance
           >
-            {data.client.name}
-          </motion.h1>
+            {/* Espejo de fondo (Sin drop-shadow para evitar el lag de renderizado) */}
+            {data.assets?.decorations?.espejo && (
+              <img 
+                src={data.assets.decorations.espejo} 
+                alt="Marco espejo" 
+                className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+              />
+            )}
+
+            {/* Hada 1 (Arriba a la izquierda) */}
+            {data.assets?.decorations?.hada1 && (
+              <motion.div
+                initial={{ opacity: 0, x: -20, y: -20 }}
+                animate={{ opacity: isEnvelopeOpen ? 1 : 0, x: isEnvelopeOpen ? 0 : -20, y: isEnvelopeOpen ? 0 : -20 }}
+                transition={{ duration: 1, delay: 0.1 }}
+                className="absolute top-3 -left-2 md:-top-8 md:-left-12 z-20 pointer-events-none rotate-15"
+              >
+                <motion.img 
+                  animate={{ y: [0, -15, 0], rotate: [-2, 3, -2] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  src={data.assets.decorations.hada1} 
+                  alt="Hada" 
+                  className="w-28 md:w-36 object-contain drop-shadow-lg"
+                  style={{ filter: 'brightness(1.15) contrast(1.1)' }}
+                />
+              </motion.div>
+            )}
+
+            {/* Hada 2 (Abajo a la derecha) */}
+            {data.assets?.decorations?.hada2 && (
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: 20 }}
+                animate={{ opacity: isEnvelopeOpen ? 1 : 0, x: isEnvelopeOpen ? 0 : 20, y: isEnvelopeOpen ? 0 : 20 }}
+                transition={{ duration: 1, delay: 0.1 }}
+                className="absolute -bottom-2 -right-4 md:-bottom-12 md:-right-12 z-20 pointer-events-none"
+              >
+                <motion.img 
+                  animate={{ y: [0, -12, 0], rotate: [2, -3, 2] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  src={data.assets.decorations.hada2} 
+                  alt="Hada" 
+                  className="w-28 md:w-26 object-contain drop-shadow-lg"
+                  style={{ transform: 'scaleX(-1)' }}
+                />
+              </motion.div>
+            )}
+            
+            {/* Nombres centrados en el espejo */}
+            <h1 className="relative z-10 font-display text-6xl md:text-7xl lg:text-8xl text-emerald-950 text-center flex flex-col items-center justify-center -mt-2 md:-mt-12">
+              {data.client.name.includes(' y ') ? (
+                <>
+                  <span>{data.client.name.split(' y ')[0]}</span>
+                  <span className="font-serif italic text-3xl md:text-4xl my-1" style={{ color: theme.colors.gold }}>&</span>
+                  <span>{data.client.name.split(' y ')[1]}</span>
+                </>
+              ) : (
+                <span>{data.client.name}</span>
+              )}
+            </h1>
+          </motion.div>
         </div>
+
 
         {/* Caja de Frase Final Animada */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-auto px-6 py-4 max-w-sm rounded-xl border shadow-xl flex items-center justify-center text-center overflow-hidden"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: isEnvelopeOpen ? 1 : 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }} // Retraso mínimo
+
+          className="mt-auto px-6 py-4 max-w-sm flex items-center justify-center text-center shadow-2xl relative"
           style={{ 
-            backgroundColor: 'rgba(255, 255, 255, 0.45)', // Glassmorphism claro adaptado a nuestro diseño
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            borderColor: 'rgba(5, 150, 105, 0.25)', // Borde sutil esmeralda
-            boxShadow: '0 8px 32px rgba(5, 150, 105, 0.08)'
+            backgroundColor: 'rgba(2, 44, 30, 0.35)', // Cristal oscuro (esmeralda muy oscuro y translúcido)
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            border: '1px solid rgba(212, 175, 55, 0.3)', // Borde dorado muy sutil
+            borderRadius: '20px', // Bordes más afilados, chic minimalista
           }}
         >
           <p 
             ref={phraseRef as React.RefObject<HTMLParagraphElement>}
-            className="font-serif text-[1rem] md:text-[1.1rem] italic leading-relaxed text-emerald-950/80 m-0"
+            className="font-serif text-[1rem] md:text-[1.1rem] italic leading-relaxed text-emerald-50 font-light m-0 relative z-10"
           >
             "{data.client.finalPhrase}"
           </p>

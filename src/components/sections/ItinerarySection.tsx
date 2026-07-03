@@ -10,6 +10,11 @@ import Image from 'next/image';
 interface ItineraryProps {
   data: {
     itinerary: { time: string; title: string; description: string; icon?: string; image?: string }[];
+    assets?: {
+      decorations?: {
+        flor_icon?: string;
+      }
+    };
   };
   theme: {
     colors: { primary: string; gold: string; accent: string };
@@ -131,7 +136,7 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
     <section className="py-6 md:py-8 px-2 md:px-4 relative overflow-hidden" style={{ backgroundColor: theme.colors.primary }}>
       
       {/* Título */}
-      <div className="text-center mb-4 relative z-20">
+      <div className="text-center mt-8 mb-4 relative z-20">
         <h2 className="font-display text-5xl md:text-6xl text-emerald-950 drop-shadow-sm" style={{ color: theme.colors.gold }}>
           Itinerario
         </h2>
@@ -145,7 +150,7 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
       >
         
         {/* SVG Dinámico con curva en zigzag calculada en PÍXELES REALES */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none flex justify-center z-0 opacity-80">
+        <div className="absolute inset-0 w-full h-full pointer-events-none flex justify-center z-0 opacity-90">
           {dimensions.width > 0 && (
             <svg 
               width={dimensions.width} 
@@ -171,9 +176,13 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
           <div 
             ref={heartRef}
             className="absolute top-0 left-0 z-30 flex items-center justify-center "
-            style={{ width: '28px', height: '28px' }} // alignOrigin centrará esto perfectamente
+            style={{ width: '40px', height: '40px' }} // alignOrigin centrará esto perfectamente
           >
-            <Heart fill={theme.colors.gold} stroke={theme.colors.gold} size={16} className="animate-pulse" />
+            {data.assets?.decorations?.flor_icon ? (
+              <img src={data.assets.decorations.flor_icon} alt="Flor" className="w-12 h-12 object-contain" />
+            ) : (
+              <Heart fill={theme.colors.gold} stroke={theme.colors.gold} size={24} className="animate-pulse" />
+            )}
           </div>
         )}
 
@@ -214,13 +223,13 @@ export function ItinerarySection({ data, theme }: ItineraryProps) {
                   {item.title}
                 </h3>
                 
-                <div className="relative w-8 h-8 md:w-12 md:h-12 flex items-center justify-center mt-1">
+                <div className="relative w-22 h-22 md:w-24 md:h-24 flex items-center justify-center mt-1">
                   {item.image && !hasError ? (
                     <Image 
                       src={item.image} 
                       alt={item.title} 
                       fill 
-                      className="object-contain opacity-80"
+                      className="object-contain opacity-100"
                       onError={() => setImgErrors(prev => ({ ...prev, [idx]: true }))}
                     />
                   ) : (

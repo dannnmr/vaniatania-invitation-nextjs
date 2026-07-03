@@ -7,6 +7,7 @@ import { MailOpen } from 'lucide-react';
 interface EnvelopeProps {
   isOpen: boolean;
   onOpen: () => void;
+  onStartOpen?: () => void; // Added onStartOpen
   data: { 
     client: { name: string; eventType: string };
     assets?: {
@@ -21,7 +22,7 @@ interface EnvelopeProps {
   theme: { colors: { primary: string; gold: string } };
 }
 
-export function EnvelopeScreen({ isOpen, onOpen, data, theme }: EnvelopeProps) {
+export function EnvelopeScreen({ isOpen, onOpen, onStartOpen, data, theme }: EnvelopeProps) {
   const [isOpening, setIsOpening] = useState(false);
 
   useEffect(() => {
@@ -112,7 +113,10 @@ export function EnvelopeScreen({ isOpen, onOpen, data, theme }: EnvelopeProps) {
           >
             {envAssets?.sello ? (
               <motion.button
-                onClick={() => setIsOpening(true)}
+                onClick={() => {
+                  setIsOpening(true);
+                  if (onStartOpen) onStartOpen();
+                }}
                 animate={{ scale: [1, 1.03, 1], rotate: [0, 1, -1, 0] }}
                 transition={{
                   scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
@@ -138,7 +142,10 @@ export function EnvelopeScreen({ isOpen, onOpen, data, theme }: EnvelopeProps) {
                   {data.client.name}
                 </h1>
                 <button
-                  onClick={() => setIsOpening(true)}
+                  onClick={() => {
+                    setIsOpening(true);
+                    if (onStartOpen) onStartOpen();
+                  }}
                   className="pointer-events-auto flex items-center gap-3 px-8 py-4 rounded-full border border-emerald-950/20 bg-white/50 hover:bg-white/80 transition-all backdrop-blur-sm group shadow-xl"
                 >
                   <MailOpen size={20} style={{ color: theme.colors.gold }} className="group-hover:scale-110 transition-transform" />

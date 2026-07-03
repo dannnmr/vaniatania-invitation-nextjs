@@ -8,6 +8,12 @@ import { useState } from 'react';
 interface DressCodeProps {
   data: {
     dressCode: { description: string; notes: string; colors: string[] };
+    assets?: {
+      decorations?: {
+        moño?: string;
+        dress_code?: string;
+      }
+    };
   };
   theme: {
     colors: { primary: string; gold: string; accent: string };
@@ -18,42 +24,66 @@ export function DressCodeSection({ data, theme }: DressCodeProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <section className="relative py-24 px-4 flex justify-center overflow-hidden" style={{ backgroundColor: theme.colors.primary }}>
+    <section className="relative py-6 md:py-8 px-4 flex justify-center overflow-hidden" style={{ backgroundColor: theme.colors.primary }}>
       
       {/* Tarjeta Central en forma de Arco */}
       <div 
-        className="relative z-10 w-full max-w-sm pt-12 pb-10 px-6 rounded-t-[150px] border border-emerald-950/20 shadow-xl flex flex-col items-center text-center"
+        className="relative z-10 w-full max-w-sm mt-2 mb-6 pt-8 pb-6 px-6 rounded-t-[120px] border-[1.5px] shadow-sm flex flex-col items-center text-center backdrop-blur-md"
         style={{ 
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
-          backdropFilter: 'blur(12px)'
+          borderColor: theme.colors.gold,
+          backgroundColor: 'rgba(255, 255, 255, 0.45)'
         }}
       >
-        <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] mb-2 font-bold" style={{ color: theme.colors.gold }}>
+        {/* Moño */}
+        {data.assets?.decorations?.moño && (
+          <div className="absolute -top-52 right-25 w-108 h-108 drop-shadow-md z-10 -rotate-15 opacity-85">
+            <Image src={data.assets.decorations.moño} alt="Moño" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" />
+          </div>
+        )}
+
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] z-20 mb-2 font-bold" style={{ color: theme.colors.gold }} >
           Sugerencia de estilo
         </span>
         
-        <h2 className="font-display text-5xl md:text-6xl text-emerald-950 mb-6 leading-none">
+        <h2 className="font-display text-5xl md:text-6xl text-emerald-950 mb-2 leading-none z-20">
           Dress Code
         </h2>
 
         {/* Imagen central de etiqueta (o ícono) */}
-        <motion.div 
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative w-32 h-32 my-2 drop-shadow-lg flex justify-center items-center"
-        >
-          {!imgError ? (
+        {data.assets?.decorations?.dress_code ? (
+          <motion.div 
+            animate={{ y: [0, -10, 0], rotate: [-2, 3, -2] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative w-28 h-28 my-1 drop-shadow-lg flex justify-center items-center"
+          >
             <Image 
-              src="/images/decorativas_v2/dress_etiqueta.webp" 
-              alt="Etiqueta" 
+              src={data.assets.decorations.dress_code} 
+              alt="Etiqueta Dress Code" 
               fill 
+              sizes="(max-width: 768px) 100vw, 33vw"
               style={{ objectFit: 'contain' }}
-              onError={() => setImgError(true)}
             />
-          ) : (
-            <Shirt size={64} style={{ color: theme.colors.accent }} />
-          )}
-        </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative w-32 h-32 my-2 drop-shadow-lg flex justify-center items-center"
+          >
+            {!imgError ? (
+              <Image 
+                src="/images/decorativas_v2/dress_etiqueta.webp" 
+                alt="Etiqueta" 
+                fill 
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ objectFit: 'contain' }}
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <Shirt size={64} style={{ color: theme.colors.accent }} />
+            )}
+          </motion.div>
+        )}
 
         {/* Círculos de texturas/colores */}
         <div className="flex flex-wrap gap-3 justify-center my-6 z-10 relative">
@@ -67,11 +97,8 @@ export function DressCodeSection({ data, theme }: DressCodeProps) {
         </div>
 
         {/* Nota Especial */}
-        <div className="flex flex-col items-center mt-6 pt-6 border-t border-emerald-950/20 w-4/5">
-          <span className="font-pinyon text-4xl leading-[0.8]" style={{ color: theme.colors.gold }}>
-            Nota Especial
-          </span>
-          <div className="flex items-start gap-2 mt-4 text-left">
+        <div className="flex flex-col items-center w-4/5">
+          <div className="flex items-start gap-2 mt-2 text-left">
             <Ban size={16} style={{ color: theme.colors.gold, marginTop: '2px', flexShrink: 0 }} />
             <p className="font-sans text-xs italic text-emerald-950/70 leading-relaxed tracking-wide m-0">
               {data.dressCode.notes}

@@ -10,6 +10,7 @@ interface SaveTheDateProps {
     event: {
       date: Date;
       receptionTime: string;
+      locationName?: string;
     };
     client: {
       name: string;
@@ -17,6 +18,9 @@ interface SaveTheDateProps {
     assets: {
       decorations: {
         saveTheDate: string;
+        tarjeta?: string;
+        fairy?: string;
+        corazon_verde?: string;
       };
     };
   };
@@ -37,7 +41,15 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
     const isApple =
       /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const { googleUrl, icsUrl } = getCalendarLinks(event.date, `XV Años - ${client.name}`);
+    const details = `Te invitamos a celebrar los 15 años de ${client.name}.\\nRecepción: ${event.receptionTime}\\n¡Te esperamos!`;
+    const location = event.locationName || '';
+    
+    const { googleUrl, icsUrl } = getCalendarLinks(
+      event.date, 
+      `XV Años - ${client.name}`,
+      details,
+      location
+    );
 
     if (isApple) {
       const link = document.createElement('a');
@@ -66,9 +78,21 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
 
   return (
     <section
-      className="relative flex flex-col items-center justify-start pt-12 pb-0 overflow-hidden"
-      style={{ backgroundColor: theme.colors.primary }}
+      className="relative flex flex-col items-center justify-start py-16 overflow-hidden"
+      style={{ backgroundColor: '#a1a86d' }}
     >
+      {/* Imagen de fondo (Papel/Tarjeta) */}
+      {assets.decorations.tarjeta && (
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src={assets.decorations.tarjeta} 
+            alt="Textura de fondo" 
+            fill 
+            className="object-cover object-center opacity-100 mix-blend-multiply scale-108"
+          />
+        </div>
+      )}
+
       {/* Contenedor Principal Limitado */}
       <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center px-4">
         
@@ -78,8 +102,8 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-5xl md:text-6xl text-center" 
-          style={{ color: theme.colors.accent }}
+          className="font-display text-5xl md:text-6xl text-center drop-shadow-sm pt-5" 
+          style={{ color: theme.colors.gold }}
         >
           {monthName}, {yearNumber}
         </motion.h2>
@@ -100,10 +124,10 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
 
             return (
               <div key={i} className="flex flex-col items-center relative">
-                {/* Días en palo de rosa */}
+                {/* Días en palo de rosa más oscuro */}
                 <span 
-                  className="font-serif text-sm md:text-lg mb-2" 
-                  style={{ color: theme.colors.rose, opacity: isTarget ? 1 : 0.7 }}
+                  className="font-serif text-sm md:text-lg mb-2 font-medium" 
+                  style={{ color: '#a64d59' }}
                 >
                   {dayName}
                 </span>
@@ -111,22 +135,37 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
                 <div className="relative flex items-center justify-center w-10 h-10 md:w-14 md:h-14">
                   {isTarget ? (
                     <>
-                      {/* Corazón Sólido de Fondo (Verde Agua) */}
-                      <Heart 
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 fill-current drop-shadow-md" 
-                        style={{ color: theme.colors.accent }} 
-                        strokeWidth={0}
-                      />
-                      {/* Número Blanco encima del corazón verde agua */}
-                      <span className="relative z-10 font-serif text-2xl md:text-4xl text-white font-medium">
+                      {/* Corazón Verde Imagen */}
+                      {assets.decorations.corazon_verde ? (
+                        <motion.div 
+                          animate={{ scale: [1, 1.15, 1] }}
+                          transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24"
+                        >
+                          <Image 
+                            src={assets.decorations.corazon_verde} 
+                            alt="Corazón resaltado" 
+                            fill 
+                            className="object-contain drop-shadow-md"
+                          />
+                        </motion.div>
+                      ) : (
+                        <Heart 
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 fill-current drop-shadow-md" 
+                          style={{ color: theme.colors.accent }} 
+                          strokeWidth={0}
+                        />
+                      )}
+                      {/* Número Blanco encima del corazón verde */}
+                      <span className="relative z-10 font-serif text-2xl md:text-4xl text-white font-medium drop-shadow-sm">
                         {dayNum}
                       </span>
                     </>
                   ) : (
-                    // Números normales en palo de rosa
+                    // Números normales en rosa oscuro
                     <span 
-                      className="font-serif text-2xl md:text-4xl" 
-                      style={{ color: theme.colors.rose, opacity: 0.8 }}
+                      className="font-serif text-2xl md:text-4xl font-medium" 
+                      style={{ color: '#a64d59' }}
                     >
                       {dayNum}
                     </span>
@@ -137,61 +176,38 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
           })}
         </motion.div>
 
-        {/* Ilustración Central (Hada/Dibujo) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="w-full relative mt-6 md:mt-8 flex justify-center"
-        >
-          <div className="relative w-full h-40 md:h-48">
-            <Image 
-              src={assets.decorations.saveTheDate} 
-              alt="Ilustración" 
-              fill 
-              className="object-contain"
-              style={{ filter: 'opacity(0.9) drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }}
-            />
-          </div>
-        </motion.div>
+        {/* Ilustración Antigua Removida */}
 
-        {/* Curva decorativa (SVG Line en Palo de rosa) */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, delay: 0.6 }}
-          className="w-full mt-2 flex justify-center"
-        >
-          <svg viewBox="0 0 400 60" className="w-full max-w-lg" preserveAspectRatio="none">
-            <path 
-              d="M 0 30 Q 100 0, 200 30 T 400 30" 
-              fill="none" 
-              stroke={theme.colors.rose} 
-              strokeWidth="2"
-            />
-          </svg>
-        </motion.div>
-
-        {/* Botón de Agendar Calendario */}
+        {/* Botón de Agendar Calendario con Hada */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="relative z-20 mt-6 mb-8"
+          transition={{ duration: 0.6, delay: 0.6 }} // Ajuste del delay ya que quitamos la ilustración
+          className="relative z-20 mt-38 md:mt-40 mb-8 flex justify-center"
         >
+          {assets.decorations.fairy && (
+            <div className="absolute bottom-[92%] w-48 h-48 md:w-56 md:h-56 z-10 opacity-90 pointer-events-none">
+              <Image 
+                src={assets.decorations.fairy} 
+                alt="Hada sentada" 
+                fill 
+                className="object-contain object-bottom"
+                style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.15))' }}
+              />
+            </div>
+          )}
           <button
             onClick={handleAddToCalendar}
-            className="group flex items-center gap-3 px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+            className="group flex items-center gap-3 px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 border-[1.5px]"
             style={{ 
-              backgroundColor: theme.colors.accent, // Verde agua
-              color: 'white' 
+              backgroundColor: 'transparent', 
+              borderColor: '#a64d59',
+              color: '#a64d59' 
             }}
           >
             <CalendarPlus className="w-5 h-5 transition-transform group-hover:scale-110" />
-            <span className="font-serif italic tracking-wide text-lg md:text-xl">
+            <span className="font-serif italic tracking-wide text-lg md:text-xl uppercase">
               Agendar en Calendario
             </span>
           </button>

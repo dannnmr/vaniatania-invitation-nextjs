@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Mono, Inter, Pinyon_Script } from "next/font/google";
 import "./globals.css";
+import { AudioController } from '@/components/core/AudioController';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
