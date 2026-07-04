@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/invitacion/metadata_act.png",
+        url: "/invitacion/metada_act.png",
         width: 1200,
         height: 630,
         alt: "Tania & Vania - XV Años",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/invitacion/metadata_act.png"],
+    images: ["/invitacion/metada_act.png"],
   },
   icons: {
     icon: "/logo_act.webp",
