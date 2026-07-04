@@ -14,7 +14,7 @@ export const baseTemplateConfig = {
     locationUrl: 'https://maps.app.goo.gl/yh3naEBWoaRXGPsRA?g_st=ac'
   },
   parents: {
-    topLabel: 'Con la bendición de nuestros padres',
+    topLabel: 'Con la bendición de Dios y el amor de nuestros padres',
     fatherName: 'Moises Ilaya Nina',
     motherName: 'Miriam Rodriguez Álvarez',
     godparents: [
