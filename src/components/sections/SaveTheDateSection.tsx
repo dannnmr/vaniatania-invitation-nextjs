@@ -144,6 +144,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
                             src={assets.decorations.corazon_verde} 
                             alt="Corazón resaltado" 
                             fill 
+                            sizes="(max-width: 768px) 64px, 96px"
                             className="object-contain drop-shadow-md"
                           />
                         </div>
@@ -190,6 +191,7 @@ export function SaveTheDateSection({ data, theme }: SaveTheDateProps) {
                 src={assets.decorations.fairy} 
                 alt="Hada sentada" 
                 fill 
+                sizes="(max-width: 768px) 192px, 224px"
                 className="object-contain object-bottom"
                 style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.15))' }}
               />

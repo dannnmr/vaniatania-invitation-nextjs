@@ -114,7 +114,7 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
             className="select-none pointer-events-none text-center mb-2 md:mb-3 block"
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontSize: 'clamp(2.8rem, 9vw, 4.5rem)',
+              fontSize: 'clamp(3.2rem, 9vw, 4.5rem)',
               fontWeight: 700,
               fontStyle: 'italic',
               color: 'transparent',
@@ -149,18 +149,20 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
 
 
             {/* Hada 1 (Arriba a la izquierda) */}
-            {data.assets?.decorations?.hada1 && (
+            {data.assets?.decorations?.hada2 && (
               <motion.div
                 initial={{ opacity: 0, x: -20, y: -20 }}
                 animate={{ opacity: isEnvelopeOpen ? 1 : 0, x: isEnvelopeOpen ? 0 : -20, y: isEnvelopeOpen ? 0 : -20 }}
                 transition={{ duration: 1, delay: 0.1 }}
                 className="absolute top-3 -left-2 md:-top-8 md:-left-12 z-20 pointer-events-none rotate-15"
               >
-                <img 
-                  src={data.assets.decorations.hada1} 
+                <Image 
+                  src={data.assets.decorations.hada2} 
                   alt="Hada" 
+                  width={150}
+                  height={150}
                   decoding="async"
-                  fetchPriority="high"
+                  priority
                   className="w-28 md:w-36 object-contain drop-shadow-lg animate-float-medium will-change-transform"
                   style={{ filter: 'contrast(1.1)' }}
                 />
@@ -168,18 +170,20 @@ export function HeroSection({ data, theme, isEnvelopeOpen }: HeroSectionProps) {
             )}
 
             {/* Hada 2 (Abajo a la derecha) */}
-            {data.assets?.decorations?.hada2 && (
+            {data.assets?.decorations?.hada1 && (
               <motion.div
                 initial={{ opacity: 0, x: 20, y: 20 }}
                 animate={{ opacity: isEnvelopeOpen ? 1 : 0, x: isEnvelopeOpen ? 0 : 20, y: isEnvelopeOpen ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.1 }}
                 className="absolute -bottom-2 -right-4 md:-bottom-12 md:-right-12 z-20 pointer-events-none"
               >
-                <img 
-                  src={data.assets.decorations.hada2} 
+                <Image 
+                  src={data.assets.decorations.hada1} 
                   alt="Hada" 
+                  width={150}
+                  height={150}
                   decoding="async"
-                  fetchPriority="high"
+                  priority
                   className="w-28 md:w-36 object-contain drop-shadow-lg animate-float-reverse-slow will-change-transform"
                   style={{ filter: 'contrast(1.1)' }}
                 />

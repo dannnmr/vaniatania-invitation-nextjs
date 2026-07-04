@@ -10,7 +10,7 @@ interface FooterProps {
  * Sección de pie de página (Footer).
  */
 export function FooterSection({ data, theme }: FooterProps) {
-  const quinceañeraName = data?.hero?.title || "Vania & Tania";
+  const quinceañeraName = data?.hero?.title || "Tania & Vania";
 
   return (
     <footer

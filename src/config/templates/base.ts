@@ -52,7 +52,7 @@ export const baseTemplateConfig = {
     unitText: 'Persona',
   },
   music: {
-    ambientTrack: '/audio/disclousure.mp3',
+    ambientTrack: '/audio/fly_heart.mp3',
     spotifyPlaylistUrl: 'https://open.spotify.com/playlist/0',
     suggestLabel: 'Sugiérenos una canción',
   },
@@ -90,8 +90,8 @@ export const baseTemplateConfig = {
       stars: "/images/decorations/stars.png",
       bosque: "https://res.cloudinary.com/dvaswskle/image/upload/v1783099116/Dise%C3%B1o_sin_t%C3%ADtulo_sx9k9z.png",
       // bosque: "https://res.cloudinary.com/dvaswskle/image/upload/v1783049539/bg_original_kp1hum.webp",
-      hada1: "https://res.cloudinary.com/dvaswskle/image/upload/v1782954142/fairy_rosa_qy7gav.webp",
-      hada2: "https://res.cloudinary.com/dvaswskle/image/upload/v1782954123/fairy_verde_zu7mhw.webp",
+      hada1: "https://res.cloudinary.com/dvaswskle/image/upload/v1783185982/fairy_rosa_qy7gav.webp",
+      hada2: "https://res.cloudinary.com/dvaswskle/image/upload/v1783186015/fairy_verde_zu7mhw.webp",
       espejo: "https://res.cloudinary.com/dvaswskle/image/upload/v1782972472/espejo_dotzaz.webp",
       saveTheDate: "https://res.cloudinary.com/dvaswskle/image/upload/v1782954123/fairy_rosa2_unt14x.webp",
       acto_icon:"https://res.cloudinary.com/dvaswskle/image/upload/v1783050384/acto_icon_qoe02j.webp",
@@ -112,7 +112,7 @@ export const baseTemplateConfig = {
       fairy_volando: "https://res.cloudinary.com/dvaswskle/image/upload/v1783096638/fairy_volando_vlvszy.webp"
     },
     envelope: {
-      sello: "https://res.cloudinary.com/dvaswskle/image/upload/v1782961651/broche_hadas_1_usxpot.webp",
+      sello: "https://res.cloudinary.com/dvaswskle/image/upload/v1783184748/logo_act_w674yi.webp",
       envelope_complete: "https://res.cloudinary.com/dvaswskle/image/upload/v1782961651/bg_rosa_pgt1w4.webp",
       left: "https://res.cloudinary.com/dvaswskle/image/upload/v1782961651/lado_izquierdo_rosa_hgejtz.webp",
       right: "https://res.cloudinary.com/dvaswskle/image/upload/v1782961651/lado_derecho_rosa_mwkxon.webp"
