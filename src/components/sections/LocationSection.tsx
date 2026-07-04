@@ -125,11 +125,13 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }} viewport={{ once: true }}
           style={{ 
             fontFamily: 'var(--font-display)', 
-            fontSize: 'clamp(4rem, 10vw, 8rem)', 
+            fontSize: 'clamp(2.5rem, 8vw, 7rem)', 
             color: theme.colors.gold, 
-            lineHeight: 0.9, 
+            lineHeight: 1, 
             margin: '0 0 2rem 0',
-            textShadow: '0 10px 30px rgba(77, 182, 172, 0.2)' 
+            textShadow: '0 10px 30px rgba(77, 182, 172, 0.2)',
+            wordBreak: 'break-word',
+            textWrap: 'balance'
           }}
         >
           {venueTitle}
@@ -144,7 +146,7 @@ export function LocationSection({ data, theme }: LocationSectionProps) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', maxWidth: '400px', marginLeft: '2rem', alignItems: 'flex-start', textAlign: 'left' }}>
             <div>
               {venueSubtitle && (
-                <p style={{ fontFamily: 'var(--font-serif)', color: theme.colors.rose, fontSize: '1.2rem', lineHeight: 1.6, letterSpacing: '0.05em', fontStyle: 'italic', whiteSpace: 'pre-line' }}>
+                <p style={{ fontFamily: 'var(--font-serif)', color: theme.colors.rose, fontSize: '1.2rem', lineHeight: 1.6, letterSpacing: '0.05em', fontStyle: 'italic', whiteSpace: 'pre-line', textWrap: 'balance' }}>
                   {venueSubtitle}
                 </p>
               )}

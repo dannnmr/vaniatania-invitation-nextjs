@@ -10,7 +10,7 @@ export const baseTemplateConfig = {
     date: new Date('2026-08-28T16:00:00'), // Fecha 28 de Agosto (Año tentativo 2026)
     ceremonyTime: '19:00',
     receptionTime: '16:00',
-    locationName: 'Salón de Eventos Zafiro, Av. Cívica, Calle 4.',
+    locationName: 'Salón de Eventos Zafiro, Av. Cívica, Calle 4, El Alto.',
     locationUrl: 'https://maps.app.goo.gl/yh3naEBWoaRXGPsRA?g_st=ac'
   },
   parents: {
