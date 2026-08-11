@@ -4,7 +4,7 @@ export const baseTemplateConfig = {
   client: {
     name: "Tania y Vania",
     eventType: "XV Años",
-    finalPhrase: "En una noche llena de magia, sueños y encanto, les invitamos a celebrar nuestros 15 años. Como en un cuento de hadas, viviremos juntos una velada inolvidable, llena de alegría, ilusión y momentos especiales.",
+    finalPhrase: "En una noche llena de magia, sueños y encanto, les invitamos a celebrar nuestro 15 años. Como en un cuento de hadas, viviremos juntos una velada inolvidable, llena de alegría, ilusión y momentos especiales.",
   },
   event: {
     date: new Date('2026-08-28T16:00:00'), // Fecha 28 de Agosto (Año tentativo 2026)

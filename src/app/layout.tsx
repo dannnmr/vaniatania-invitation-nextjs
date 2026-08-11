@@ -33,7 +33,7 @@ const pinyonScript = Pinyon_Script({
 export const metadata: Metadata = {
   metadataBase: new URL('https://tania-vania-xv-invitation.danmr.com'),
   title: "Tania & Vania - XV Años",
-  description: "En una noche llena de magia, sueños y encanto les invitamos a celebrar nuestros 15 años.",
+  description: "En una noche llena de magia, sueños y encanto les invitamos a celebrar nuestro 15 años.",
   openGraph: {
     images: [
       {
