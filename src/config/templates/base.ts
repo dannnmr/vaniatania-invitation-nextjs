@@ -18,7 +18,7 @@ export const baseTemplateConfig = {
     fatherName: 'Moises Ilaya Nina',
     motherName: 'Miriam Rodriguez Álvarez',
     godparents: [
-      { role: 'Padrinos de 15 Años', couple: 'William Rodriguez Álvarez & Tania Céspedes C.' },
+      { role: 'Padrinos de 15 Años', couple: 'William Rodriguez Álvarez' },
       { role: 'Padrinos de 15 Años', couple: 'Teddy Rodriguez Álvarez & Gisel Miranda S.' },
       { role: 'Padrinos de Torta', couple: 'Carlos Ramirez Gutierrez & Zulema Rodriguez Álvarez' }
     ],
